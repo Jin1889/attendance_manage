@@ -68,7 +68,7 @@ export default {
       const { data: res } = await this.$http.get("/attendance/system/menu");
       if (res.status !== 200) return alert("error");
       this.menuList = res.data;
-      console.log(res.data);
+      // console.log(res.data);
     },
   },
 };

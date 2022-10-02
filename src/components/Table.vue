@@ -1,11 +1,11 @@
 <template>
   <el-table :data="tableData" stripe border style="width: 100%">
     <el-table-column label="#" type="index"></el-table-column>
-    <template v-for="(val, key) in tableData[0]">
+    <template v-for="(val, key, index) in tableData[0]">
       <el-table-column
         v-if="key !== 'id'"
         :prop="key"
-        :label="key"
+        :label="labels[index]"
         :key="key"
       ></el-table-column>
     </template>
@@ -23,24 +23,36 @@
 </template>
 
 <script>
+import {
+		mapState,
+		mapMutations
+	} from 'vuex'
+
 export default {
-  props: ["url"],
+  props: ["url","labels"],
   data() {
     return {
-      tableData: [],
+      tableLable: [],
+      // tableData: [],
       isShow: false,
     };
   },
   created() {
-    this.getTableList();
+    this.getTableList()
+  },
+  computed: {
+    ...mapState('department', ['tableData']),
   },
   methods: {
+    ...mapMutations('department', ['SET_TABLE_DATA']),
     // 获取所有的菜单
     async getTableList() {
       const { data: res } = await this.$http.get(this.url);
       if (res.status !== 200) return alert("error");
-      this.tableData = res.data;
-      //   console.log(res.data);
+      this.tableLable = res.label
+      this.SET_TABLE_DATA(res.data)
+      // this.tableData = res.data;
+      //   console.log(res);
     },
     update(id) {
       console.log(id);

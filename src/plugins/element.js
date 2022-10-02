@@ -17,6 +17,7 @@ import {
     MenuItemGroup,
     Table,
     TableColumn,
+    Pagination,
 } from "element-ui"
 
 Vue.use(Form)
@@ -36,3 +37,4 @@ Vue.use(MenuItem)
 Vue.use(MenuItemGroup)
 Vue.use(Table)
 Vue.use(TableColumn)
+Vue.use(Pagination)
