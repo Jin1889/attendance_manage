@@ -18,6 +18,14 @@ import {
     Table,
     TableColumn,
     Pagination,
+    Dialog,
+    Select,
+    Option,
+    Popconfirm,
+    DatePicker,
+    TimePicker,
+    Col,
+    Radio,
 } from "element-ui"
 
 Vue.use(Form)
@@ -38,3 +46,11 @@ Vue.use(MenuItemGroup)
 Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(Pagination)
+Vue.use(Dialog)
+Vue.use(Select)
+Vue.use(Option)
+Vue.use(Popconfirm)
+Vue.use(DatePicker)
+Vue.use(TimePicker)
+Vue.use(Col)
+Vue.use(Radio)

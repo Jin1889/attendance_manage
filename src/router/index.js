@@ -5,6 +5,7 @@ import Home from '../views/home/Home.vue'
 import Index from '../views/index/Index.vue'
 import Attendance from '../views/attendance/Attendance.vue'
 import Department from '../views/department/Department.vue'
+import Employee from '../views/employee/Employee.vue'
 
 Vue.use(VueRouter)
 
@@ -34,6 +35,10 @@ const routes = [
         path: '/department',
         component: Department
       },
+      {
+        path: '/employ',
+        component: Employee
+      },
     ]
   },
   // {
@@ -50,6 +55,21 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+
+// 挂载路由导航守卫
+router.beforeEach((to, from, next) => {
+  // to 将要访问的路径
+  // from 代表从哪个路径跳转而来
+  // next 是一个函数，表示放行
+  //     next()  放行    next('/login')  强制跳转
+
+  if (to.path === '/login') return next()
+  // 获取token
+  const tokenStr = window.sessionStorage.getItem('token')
+  if (!tokenStr) return next('/login')
+  next()
 })
 
 export default router
